@@ -19,4 +19,4 @@ for line in allLines:
 		uncertainList.write(lineArray[1] + '\n')
 	counter += 1
 	print(counter / total)
-	
+
