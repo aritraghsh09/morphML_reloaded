@@ -24,5 +24,7 @@ To change dataset, change the SDSS CasJobs query `/dataHandlers/ZooMaster.txt` a
 ---
 
 Galaxy Zoo classifications: C. Lintott et al. 2008
+
 SDSS DR12 images: S. Alam, F. D. Albareti, C. Allende Prieto et al. 2015
+
 Alexnet architecture: A. Krizhevsky, I. Sutskever, G. E. Hinton 2012
