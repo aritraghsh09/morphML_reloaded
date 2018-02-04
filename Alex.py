@@ -1,6 +1,4 @@
 # Applying Alexnet to SDSS galaxy classification task
-# References: Alex Krizhevsky, Ilya Sutskever, and Geoffrey E. Hinton
-# Alexnet paper: http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf
 
 from __future__ import division, print_function, absolute_import
 

@@ -3,13 +3,13 @@ Recreating a galaxy morphology classifier with SDSS using Yale HPRC resources
 
 ---
 
-All data is stored in `/data`
-
 Spiral galaxies in `/data/0`
 
 Elliptical galaxies in `/data/1`
 
 Uncertain galaxies in `/data/2`
+
+To upload your own data, remove the `data/` line from `.gitignore`
 
 ---
 
@@ -20,3 +20,9 @@ Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to ch
 Image preloader function of tflearn will automatically create learning sets using this file structure
 
 To change dataset, change the SDSS CasJobs query `/dataHandlers/ZooMaster.txt` and run `python3 DataReader.py` pathing to the new CSV
+
+---
+
+Galaxy Zoo classifications: C. Lintott et al. 2008
+SDSS DR12 images: S. Alam, F. D. Albareti, C. Allende Prieto et al. 2015
+Alexnet architecture: A. Krizhevsky, I. Sutskever, G. E. Hinton 2012
