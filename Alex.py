@@ -1,15 +1,12 @@
-# Applying Alexnet to SDSS galaxy classification task
-
 from __future__ import division, print_function, absolute_import
-
 import tflearn
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.normalization import local_response_normalization
 from tflearn.layers.estimator import regression
 
+# loading data
 dataPath = '/data'
-
 X, Y = image_preloader(path_data, image_shape=(120, 120),
 						mode='folder', categorical_labels=True,
 						normalize=True)

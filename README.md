@@ -27,4 +27,6 @@ Galaxy Zoo classifications: C. Lintott et al. 2008
 
 SDSS DR12 images: S. Alam, F. D. Albareti, C. Allende Prieto et al. 2015
 
+CasJobs Query specifications: E. Kuminski and L. Shamir 2016
+
 Alexnet architecture: A. Krizhevsky, I. Sutskever, G. E. Hinton 2012

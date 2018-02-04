@@ -17,4 +17,3 @@ WHERE
     + dbo.fPhotoFlags('NOPETRO_BIG') + dbo.fPhotoFlags('BADSKY')
     + dbo.fPhotoFlags('EDGE') + dbo.fPhotoFlags('PEAKS_TOO_CLOSE')
     + dbo.fPhotoFlags('MANYPETRO') + dbo.fPhotoFlags('TOO_FEW_GOOD_DETECTIONS'))) = 0
-  -- Galaxy error parameters from Computer-generated visual morphology catalog of ∼3,000,000 SDSS galaxies (Evan Kuminski and Lior Shamir 2016)
