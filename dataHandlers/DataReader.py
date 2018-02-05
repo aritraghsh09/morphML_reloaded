@@ -1,6 +1,6 @@
 # splits master csv into separate lists to wget
 
-masterCSV = open('ZooMaster.csv')
+masterCSV = open('zooMaster.csv')
 spiralList = open('spiralList.txt', 'w')
 ellipticalList = open('ellipticalList.txt', 'w')
 uncertainList = open('uncertainList.txt', 'w')

@@ -1,5 +1,5 @@
-# morphML_reloaded
-Recreating a galaxy morphology classifier with SDSS using Yale HPRC resources
+# Morphology Classification using Alexnet
+Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ---
 
@@ -13,20 +13,20 @@ To upload your own data, remove the `data/` line from `.gitignore`
 
 ---
 
-To get data run `wget -i list_of_urls.txt` for each of the galaxy lists in `/dataHandlers`
+To get data run `wget -i listOfUrls.txt` for each of the galaxy lists in `/dataHandlers`
 
 Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to change extensions to .jpg
 
 Image preloader function of tflearn will automatically create learning sets using this file structure
 
-To change dataset, change the SDSS CasJobs query `/dataHandlers/ZooMaster.txt` and run `python3 DataReader.py` pathing to the new CSV
+To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.txt` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and imageurl must be changed for the data reader to work for new data)
 
 ---
 
-Galaxy Zoo classifications: C. Lintott et al. 2008
+Galaxy Zoo classifications: Lintott et al. 2008
 
-SDSS DR12 images: S. Alam, F. D. Albareti, C. Allende Prieto et al. 2015
+SDSS DR12 images: Alam, Albareti, and Allende Prieto et al. 2015
 
-CasJobs Query specifications: E. Kuminski and L. Shamir 2016
+CasJobs query specifications: Kuminski and Shamir 2016
 
-Alexnet architecture: A. Krizhevsky, I. Sutskever, G. E. Hinton 2012
+Alexnet architecture: Krizhevsky, Sutskever, and Hinton 2012
