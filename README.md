@@ -9,7 +9,7 @@ Elliptical galaxies in `/data/1`
 
 Uncertain galaxies in `/data/2`
 
-To upload your own data, remove the `data/` line from `.gitignore`
+To upload your own data remove the line `data/` from `.gitignore`
 
 ---
 
@@ -19,7 +19,7 @@ Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to ch
 
 Image preloader function of tflearn will automatically create learning sets using this file structure
 
-To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.txt` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and imageurl must be changed for the data reader to work for new data)
+To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.txt` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
 
 ---
 
