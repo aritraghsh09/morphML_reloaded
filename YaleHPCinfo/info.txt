@@ -1,0 +1,126 @@
+######################################
+This Text File is meant to be a quick intro to 
+running programs on Grace@HPC.
+For more detailed info see https://research.computing.yale.edu/support/hpc/clusters/grace
+#####################################
+
+
+**LOG-IN**
+
+Grace has 2 log-in nodes and once you have submitted your public ssh-keys to YCRC, you will be aribtrarily placed in one of these nodes. The log-in nodes are there to only provide access to research nodes and test scripts etc.
+
+
+
+
+
+**STORAGE**
+
+After logging in you should see these 3 basic directories
+scratch_60 --> FASTEST working directory. NOT backed up. Files deleted after 60 days
+project --> LARGEST directoy meant to store research data. Files not backed up
+home --> Only backed up stograge (backed up daily). Ideal for storing scripts etc.  
+
+
+
+
+
+
+
+
+**PREPARING JOBS**
+
+To submit a job to Grace, you need to use the Slurm Job Scheduler and the first task in that regard is to use a shell script to submit the job. For an eg. file see slurm_test.sh. The most important SBATCH parameters in Slurm are
+
+-- partition=<Name of the partition> The partition on Grace you want to run your job on. For testing, you can use interactive/scavenge. Scavenge can also be used if everything else is busy. But scavenge jobs can be killed anytime.For GPUs, use gpu partition. The bigmem(CPU) partition has the largest RAM at 1.5TB
+
+--time=[[DD-]HH:]MM:SS or HH:MM:SS   The time you allocate to your job. Try to guess an appropirate time for your job. Allocating super high times will result in your jon encountering long wait times. Also note that the gpu partition has walltime of 24 hours. The week partition (CPU) has the longest walltime of 7 days.
+
+--mem-per-cpu=<Memory requested per cpu in MB> Default is 6000 
+
+--ntasks
+--cpus-per-task
+
+The term "task" in this context can be thought of as a "process". Therefore, a multi-process program (e.g. MPI) is comprised of multiple tasks. And a multi-threaded program is comprised of a single task, which can in turn use multiple CPUs. In Slurm, tasks are requested with the --ntasks flag. CPUs, for the multithreaded programs, are requested with the --cpus-per-task flag.
+
+To request CPUs for your multi-threaded program, use the --cpus-per-task flag.In Slurm, the --ntasks flag specifies the number of MPI tasks created for your job. Note that, even within the same job, multiple tasks do not necessarily run on a single node. Therefore, requesting the same number of CPUs as above, but with the --ntasks flag, could result in those CPUs being allocated on several, distinct compute nodes.
+
+--gres=gpu:p100:1     To request 1 p100
+--gres=gpu:k80:2      To request 2gpus on k80s. 
+
+Note that Grace has 6 nodes with Tesla K80. These nodes have 4 GPUs each.
+There are another 6 nodes with Tesla P100. These nodes have 1 GPU each. 
+P.S: Alexnext has been shown to run substantially faster on P100 than K80.
+
+It is also possible to just ask for n gpus without specifying which to use --gres=gpu:2
+
+--gres-flags=enforce-binding 
+option ensures you get multiple GPUs on the same card, and that the CPUs you are allocated are on the same bus as your GPU. This is recommended strongly when using multiple gpus. 
+
+
+#SBATCH --mail-type=ALL   types of eamil you want to receive (start and completion for all)
+#SBATCH --mail-user=email  (Email id)
+
+
+N.B: Requesting very high resources will SLOW DOWN your job
+
+
+
+
+
+
+
+
+**SUBMITTING & RUNNING JOBS**
+
+To submit a job do 
+sbatch <shell_script_name>
+
+Submit the shell script from where you would have run it in general. All output files etc. if any will be put here by defaut as well. By default stdout will be printed to a file which will have the jobid and will be placed in the same directory as your shell script. 
+
+
+squeue -l -u <netid>     to see status of your jobs
+sacct -j <job_id>        to check status of a particular job
+scancel <job_id>         to kill your job
+squeue -p <partition_name>      to check status of partition
+squeue --sort=-p -t PD -p <partition_name>   to see all jobs queued on partition according to priority
+
+
+The slurm commands can also be accessed (i.e. jobs can be submitted etc.) directly from the command line. For eg. to simply open an interactive session you do the following
+
+srun --pty --x11 -p gpu -c 10 -t 10:00:00 --gres=gpu:2 --gres-flags=enforce-binding bash      to open an interactive session on 2 gpus
+srun --pty --x11 -p interactive bash                                                          to open an interactive session on a CPU in the interactive partition
+
+Shorthands
+-p    partition name
+-c    cpus per task
+-t    time
+
+
+
+
+
+
+
+
+
+**MODULES/EXTRA SOFTWARE**
+
+You can install additional software as you wish on your space.
+or send software installation requests to hpc@yale.edu
+
+module list      displays all of the module files that are currently loaded in your environment:
+module avail     to list all available module files
+module avail python   to see all modules whose name contains a specified string
+
+module load Langs/Python/2.7.6     loads Python2.7
+module unload Langs/Python/2.7.6   will unload Python2.7
+
+This can of course be specified in the shell script as well.
+
+To load multiple modules at one go; you can also create a saveed environment. To create a saved environment, simply load all of your desired modules and then type
+module save environment_name
+
+To load all modules in an enviroment do 
+module restore environment_name
+
+N.B: Note that the most common modules are already there in your environment by default
