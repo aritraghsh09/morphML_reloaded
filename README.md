@@ -11,7 +11,7 @@ Recreating a galaxy morphology classifier using Yale HPRC resources
 2/12/18
 - Received accounts for YHPC clusters
 
-2/4/18:
+2/4/18
 - Completed initial network code
 - Downloaded data locally
 
