@@ -5,15 +5,15 @@ Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ### Progress Log
 
-2/4/18:
-- Completed initial network code
-- Downloaded data locally
+2/13/18
+- Uploaded data to group storage on Grace (Globus ID: 5c1d826e-1131-11e8-a7ed-0a448319c2f8)
 
 2/12/18
 - Received accounts for YHPC clusters
 
-2/13/18
-- Uploaded data to group storage on Grace (Globus ID: 5c1d826e-1131-11e8-a7ed-0a448319c2f8)
+2/4/18:
+- Completed initial network code
+- Downloaded data locally
 
 ---
 
