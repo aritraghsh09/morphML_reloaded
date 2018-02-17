@@ -8,6 +8,7 @@ from tflearn.data_utils import image_preloader
 
 # loading data
 dataPath = '/dataExample'
+modelPath = 'galaxies.tflearn'
 X, Y = image_preloader(dataPath, image_shape=(120, 120),
 						mode='folder', categorical_labels=True,
 						normalize=True)
@@ -42,6 +43,7 @@ model.fit(X, Y, n_epoch=1000, validation_set=0.1, shuffle=True,
 			show_metric=True, batch_size=64, snapshot_step=200,
 			snapshot_epoch=False, run_id='alexSDSS')
 
+model.save(modelPath)
 
 
 
