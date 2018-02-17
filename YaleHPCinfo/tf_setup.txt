@@ -1,0 +1,53 @@
+###########################################
+This text file is supposed to illustrate how to get tensorflow and tflearn to work on Grace @ YaleHPC
+
+##########################################
+
+
+**INSTALLING ANACONDA**
+
+Although anaconda is available as a "module" at YaleHPC, trying to install things by loading this module often causes permission errors while installation. Thus it is very strongly recommended to install anaconda in your home directory so that you can acess it fully.
+
+1. Login to grace
+
+2. Open an interactive shell (GPU not needed for installation) 
+srun --pty -p interactive bash 
+
+3. Get the repo you want (this URL may not be the most recent version -- CHECK FOR MOST RECENT VERSION FIRST)
+wget https://repo.continuum.io/archive/Anaconda2-5.0.1-Linux-x86_64.sh
+
+4. Install Anaconda
+bash Anaconda2-5.0.1-Linux-x86_64.sh -b -p $HOME/anaconda2
+rm Anaconda2-5.0.1-Linux-x86_64.sh
+
+
+
+**INSTALLING TENSORFLOW AND TFLEARN**
+Now we will create a conda environment called tensoflow and install tensorflow and tflearn within it.
+YaleHPC does not have cuda9.0 installed yet which is a requirement for TF1.5
+Thus, this guide will focus on getting TF1.4 installed WITH PYTHON 2.7.
+
+##IF YOU ARE NOT USING PYTHON 2.7 CHANGE THE URLs APPROPRIATELY FOR THE PROPER PYTHON VERSION##
+
+
+export PATH=$HOME/anaconda2/bin:$PATH      #Add Anaconda to present path
+conda create -y -n tensorflow              #Create a conda environment called tensorflow
+source activate tensorflow                 #Activate the environment we just created
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp27-none-linux_x86_64.whl   
+pip install --ignore-installed --upgrade $TF_BINARY_URL
+pip install tflearn
+source deactivate
+
+
+
+**RUNNING TFLEARN AND TENSORFLOW**
+ssh into grace and then go into a gpu
+srun -p gpu --gres=gpu:1 --pty -t 1:00:00 bash     # one GPU for one hour
+source ml_init.sh          #This file contains a bunch of commands for activating the anaconda environment and loading cuda8.0 and cuDNN8.0-v6
+			   #This file is located in the YaleHPCInfo directory. Copy this into your home directory for it work.
+python
+>>> import tensorflow as tf
+>>> import tflearn as tfl
+
+If these two commands work then you are all set!! 
+ 
