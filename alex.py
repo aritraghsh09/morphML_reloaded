@@ -42,7 +42,6 @@ model = tflearn.DNN(network, checkpoint_path='alexCheckpoint',
 model.fit(X, Y, n_epoch=1000, validation_set=0.1, shuffle=True,
 			show_metric=True, batch_size=64, snapshot_step=200,
 			snapshot_epoch=False, run_id='alexSDSS')
-
 model.save(modelPath)
 
 
