@@ -3,7 +3,11 @@ Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ---
 
-### Progress Log
+### Log
+
+2/17/18
+- Set up TensorFlow on Grace
+- Began training job (all data, 100 epochs)
 
 2/13/18
 - Uploaded data to group storage on Grace (Globus ID: 5c1d826e-1131-11e8-a7ed-0a448319c2f8)
