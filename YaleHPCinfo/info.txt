@@ -47,6 +47,9 @@ To request CPUs for your multi-threaded program, use the --cpus-per-task flag.In
 --gres=gpu:p100:1     To request 1 p100
 --gres=gpu:k80:2      To request 2gpus on k80s. 
 
+In the case of using GPUs, your --ntasks should be 1 as you will be working on a single node. (only MPI require otherwise). When you request a GPU, you instanly get access to all the cores in the GPU. The --cpus-per-task flag in this case only controls the number of CPUs you are being allocated on the HOST node! 
+
+
 Note that Grace has 6 nodes with Tesla K80. These nodes have 4 GPUs each.
 There are another 6 nodes with Tesla P100. These nodes have 1 GPU each. 
 P.S: Alexnext has been shown to run substantially faster on P100 than K80.
