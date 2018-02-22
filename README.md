@@ -3,7 +3,11 @@ Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ---
 
-### Progress Log
+### Log
+
+2/17/18
+- Set up TensorFlow on Grace
+- Began training job (all data, 100 epochs)
 
 2/17/18
 - Succesful installation of TF and TFLearn using fresh Anaconda installation in home directory
