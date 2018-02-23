@@ -5,6 +5,13 @@ Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ### Log
 
+2/22/18
+- Optimized resource usage
+- Deleted duplicate images
+
+2/18/18
+- Finished initial test train (~7 epochs, 80% accuracy in 12 hours)
+
 2/17/18
 - Set up TensorFlow on Grace
 - Began training job (all data, 100 epochs)
