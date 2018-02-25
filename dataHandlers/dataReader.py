@@ -20,3 +20,8 @@ for line in allLines:
 	counter += 1
 	print(counter / total)
 
+masterCSV.close()
+spiralList.close()
+ellipticalList.close()
+uncertainList.close()
+
