@@ -9,9 +9,9 @@ resultLines = results.readlines()
 for line in resultLines:
 	if 'val_acc' in line:
 		# print(line[20:23]) # this is the epoch (in the output files, the line number is the epoch)
-		lossList.write(line[32:39]) # loss
-		accList.write(line[47:53]) # accuracy
-		valAccList.write(line[85:91]) # val accuracy
+		lossList.write(line[32:39] + '\n') # loss
+		accList.write(line[47:53] + '\n') # accuracy
+		valAccList.write(line[85:91] + '\n') # val accuracy
 results.close()
 lossList.close()
 accList.close()
