@@ -1,7 +1,9 @@
 ####################################
-# accParser.py
+# accParser_append.py
 #
-# Takes tflearn screen output and extracts loss, acc and val_acc every epoch for visualization
+# Special version of accParser.py
+# Used when there are separate epochs for a single run.
+# !!BE CAREFUL!! -- THIS WORKS ONLY WHEN FILES ARE NAMED USING A FIXED SCHEME AND THIS SCRIPT IS APPLIED ON THOSE FILES IN A CERTAIN ORDER
 ####################################
 import sys
 
@@ -12,9 +14,9 @@ if (len(sys.argv) != 2):
 dataPath = sys.argv[1] #the first argument is the path to the screen grab of the TF Learn run
 
 dataFile = open(dataPath, 'r')
-outFile = open(dataPath[:-6] + 'out.txt', 'w')
+outFile = open(dataPath[:-6] + 'out.txt', 'a') # !!HIGHLY UNSTABLE LINE!!
 
-outFile.write("epoch loss acc val_acc\n")
+#outFile.write("epoch loss acc val_acc\n")
 resultLines = dataFile.readlines()
 
 for line in resultLines:
@@ -23,7 +25,7 @@ for line in resultLines:
 	
 		#validation step
 		if words[-2:-1] != ['iter:']:
-			print "Something doesn't look right. Skipping an occurene of val_acc"
+			print "Something doesn't look right. Skipping an occurence of val_acc"
 			continue
 
 		outFile.write(words[words.index("epoch:")+1] + " ")		
