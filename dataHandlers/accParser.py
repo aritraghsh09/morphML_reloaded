@@ -1,18 +1,35 @@
-# takes tflearn output and extracts loss, acc every epoch for visualization
+####################################
+# accParser.py
+#
+# Takes tflearn screen output and extracts loss, acc and val_acc every epoch for visualization
+####################################
+import sys
 
-path = '../runResults/alex_opt_run_1_n2.txt' # all results if in a separate folder
-results = open(path, 'r')
-lossList = open(path + '_loss.txt', 'w')
-accList = open(path + '_acc.txt', 'w')
-valAccList = open(path + '_valAcc.txt', 'w')
-resultLines = results.readlines()
+if (len(sys.argv) != 2):
+	print "Exiting Program....\nUsage: python accParser.py /path/to/screen/output"
+
+
+dataPath = sys.argv[1] #the first argument is the path to the screen grab of the TF Learn run
+
+dataFile = open(dataPath, 'r')
+outFile = open(dataPath[:-6] + 'out.txt', 'w')
+
+outFile.write("epoch loss acc val_acc\n")
+resultLines = dataFile.readlines()
+
 for line in resultLines:
 	if 'val_acc' in line:
-		# print(line[20:23]) # this is the epoch (in the output files, the line number is the epoch)
-		lossList.write(line[32:39] + '\n') # loss
-		accList.write(line[47:53] + '\n') # accuracy
-		valAccList.write(line[85:91] + '\n') # val accuracy
-results.close()
-lossList.close()
-accList.close()
-valAccList.close()
+		words = line.split()
+	
+		#validation step
+		if words[-2:-1] != ['iter:']:
+			print "Something doesn't look right. Skipping an occurene of val_acc"
+			continue
+
+		outFile.write(words[words.index("epoch:")+1] + " ")		
+		outFile.write(words[words.index("loss:")+1] + " ")		
+		outFile.write(words[words.index("acc:")+1] + " ")		
+		outFile.write(words[words.index("val_acc:")+1] + "\n")		
+
+dataFile.close()
+outFile.close()
