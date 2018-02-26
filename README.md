@@ -5,6 +5,9 @@ Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ### Log
 
+2/25/18
+- Completed test runs changing learning rate and batch size
+
 2/22/18
 - Optimized resource usage
 - Deleted duplicate images
@@ -47,7 +50,7 @@ Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to ch
 
 Image preloader function of tflearn will automatically create learning sets using this file structure
 
-To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.txt` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
+To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.sql` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
 
 ---
 
