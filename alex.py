@@ -50,3 +50,5 @@ model.fit(X, Y, n_epoch=1000, validation_set=0.1, shuffle=True, show_metric=True
 
 
 
+
+
