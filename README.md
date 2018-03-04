@@ -1,4 +1,4 @@
-# Morphology Classification using Alexnet
+# Morphology Classification using Deep Learning
 Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ---
@@ -52,14 +52,24 @@ To upload your own data remove the line `data/` from `.gitignore`
 
 ---
 
-## Changing the Data
+## Changing Data
 
-* To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.sql` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
+### SDSS
 
-* To change the dataset size:
-	1. Create a backup running `cp -r ./data ./dataBackup` in the `/project` directory
-	2. Create a folder `/dataTest` with the same subdirectory structure as `/data`
-	3. Run `for file in $(ls -p | grep -v / | tail -NUMBER_OF_IMAGES_TO_MOVE); do mv $file ../../dataTest/SUBDIRECTORY_NAME; done` from each subdirectory in `/data` to move a number of images to a test folder. Be sure to change NUMBER_OF_IMAGES_TO_MOVE and SUBDIRECTORY_NAME to match.
+1. Change the SDSS CasJobs query `/dataHandlers/zooMaster.sql`
+2. Run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
+
+### To another set
+
+1. Compile images in `/data` folder structure with each subdirectory as a different category to classify
+2. Reset the `dataPath` variable in the network
+
+### Dataset size
+
+1. Create a backup running `cp -r ./data ./dataBackup` in the `/project` directory
+2. Create a folder `/dataTest` with the same subdirectory structure as `/data`
+3. Run `for file in $(ls -p | grep -v / | tail -NUMBER_OF_IMAGES_TO_MOVE); do mv $file ../../dataTest/SUBDIRECTORY_NAME; done` from each subdirectory in `/data` to move a number of images to a test folder
+4. Ensure the training and test data are loaded correctly with image preloader in the network
 
 ---
 
