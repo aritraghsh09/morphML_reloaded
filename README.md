@@ -44,13 +44,22 @@ To upload your own data remove the line `data/` from `.gitignore`
 
 ---
 
-To get data run `wget -i listOfUrls.txt` for each of the galaxy lists in `/dataHandlers`
+## Getting Data
 
-Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to change extensions to .jpg
+1. Run `wget -i listOfUrls.txt` for each of the galaxy lists in `/dataHandlers`
 
-Image preloader function of tflearn will automatically create learning sets using this file structure
+2. Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to change extensions to .jpg (image preloader function of tflearn will automatically create learning sets using this file structure)
 
-To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.sql` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
+---
+
+## Changing the Data
+
+* To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.sql` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
+
+* To change the dataset size:
+	1. Create a backup running `cp -r ./data ./dataBackup` in the `/project` directory
+	2. Create a folder `/dataTest` with the same subdirectory structure as `/data`
+	3. Run `for file in $(ls -p | grep -v / | tail -NUMBER_OF_IMAGES_TO_MOVE); do mv $file ../../dataTest/SUBDIRECTORY_NAME; done` from each subdirectory in `/data` to move a number of images to a test folder. Be sure to change NUMBER_OF_IMAGES_TO_MOVE and SUBDIRECTORY_NAME to match.
 
 ---
 
