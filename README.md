@@ -5,6 +5,9 @@ Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ### Log
 
+3/5/18
+- Grace maintenance complete
+
 2/25/18
 - Completed test runs changing learning rate and batch size
 
@@ -47,8 +50,8 @@ To upload your own data remove the line `data/` from `.gitignore`
 ## Getting Data
 
 1. Run `wget -i listOfUrls.txt` for each of the galaxy lists in `/dataHandlers`
-
 2. Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to change extensions to .jpg (image preloader function of tflearn will automatically create learning sets using this file structure)
+3. Get the number of images by running `\ls -afq | wc -l` in each subdirectory
 
 ---
 
@@ -58,6 +61,7 @@ To upload your own data remove the line `data/` from `.gitignore`
 
 1. Change the SDSS CasJobs query `/dataHandlers/zooMaster.sql`
 2. Run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
+3. Delete any duplicates by running `find . -type f -name '*.1.jpg' -delete` in each subdirectory
 
 ### To another set
 
