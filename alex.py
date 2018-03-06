@@ -46,7 +46,7 @@ network = regression(network, optimizer='momentum',loss='categorical_crossentrop
 
 # training
 model = tflearn.DNN(network, checkpoint_path=modelPath, tensorboard_verbose=0)
-model.fit(X, Y, n_epoch=1000, validation_set=0.1, shuffle=True, show_metric=True, batch_size=64, snapshot_step=None, snapshot_epoch=True, run_id='alexSDSS')
+model.fit(X, Y, n_epoch=1000, validation_set=0.1, shuffle=True, show_metric=True, batch_size=64, snapshot_step=None, snapshot_epoch=True, run_id='alex')
 
 
 
