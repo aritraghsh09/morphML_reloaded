@@ -50,8 +50,9 @@ To upload your own data remove the line `data/` from `.gitignore`
 ## Getting Data
 
 1. Run `wget -i listOfUrls.txt` for each of the galaxy lists in `/dataHandlers`
-2. Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to change extensions to .jpg (image preloader function of tflearn will automatically create learning sets using this file structure)
-3. Get the number of images by running `\ls -afq | wc -l` in each subdirectory
+2. On Mac, run `find . -name '.DS_Store' -type f -delete` from the project directory to recursively delete Finder preferences (avoid opening the data directories in Finder)
+3. Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to change extensions to .jpg (image preloader function of tflearn will automatically create learning sets using this file structure)
+4. Get the number of images by running `\ls -afq | wc -l` in each subdirectory
 
 ---
 
