@@ -1,7 +1,7 @@
 ####################################
 # accParser_append.py
 #
-# Special version of accParser.py
+# To use this, you must first have run accParser at least once for that particular run folder. This tries to open the old out file and append stuff to it.
 # Used when there are separate epochs for a single run.
 # !!BE CAREFUL!! -- THIS WORKS ONLY WHEN FILES ARE NAMED USING A FIXED SCHEME AND THIS SCRIPT IS APPLIED ON THOSE FILES IN A CERTAIN ORDER
 ####################################
