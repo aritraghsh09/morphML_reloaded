@@ -1,9 +1,15 @@
-# Morphology Classification using Alexnet
+# Morphology Classification using Deep Learning
 Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ---
 
 ### Log
+
+3/5/18
+- Grace maintenance complete
+
+2/25/18
+- Completed test runs changing learning rate and batch size
 
 2/22/18
 - Optimized resource usage
@@ -41,13 +47,34 @@ To upload your own data remove the line `data/` from `.gitignore`
 
 ---
 
-To get data run `wget -i listOfUrls.txt` for each of the galaxy lists in `/dataHandlers`
+## Getting Data
 
-Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to change extensions to .jpg
+1. Run `wget -i listOfUrls.txt` for each of the galaxy lists in `/dataHandlers`
+2. On Mac, run `find . -name '.DS_Store' -type f -delete` from the project directory to recursively delete Finder preferences (avoid opening the data directories in Finder)
+3. Then run `find . -type f -exec mv '{}' '{}'.jpg \;` in each data subfolder to change extensions to .jpg (image preloader function of tflearn will automatically create learning sets using this file structure)
+4. Get the number of images by running `\ls -afq | wc -l` in each subdirectory
 
-Image preloader function of tflearn will automatically create learning sets using this file structure
+---
 
-To change dataset, change the SDSS CasJobs query `/dataHandlers/zooMaster.txt` and run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
+## Changing Data
+
+### SDSS
+
+1. Change the SDSS CasJobs query `/dataHandlers/zooMaster.sql`
+2. Run `python3 dataReader.py` pathing to the new CSV (indices of where the classifications and image url must be changed for the data reader to work for new data)
+3. Delete any duplicates by running `find . -type f -name '*.1.jpg' -delete` in each subdirectory
+
+### To another set
+
+1. Compile images in `/data` folder structure with each subdirectory as a different category to classify
+2. Reset the `dataPath` variable in the network
+
+### Dataset size
+
+1. Create a backup running `cp -r ./data ./dataBackup` in the `/project` directory
+2. Create a folder `/dataTest` with the same subdirectory structure as `/data`
+3. Run `for file in $(ls -p | grep -v / | tail -NUMBER_OF_IMAGES_TO_MOVE); do mv $file ../../dataTest/SUBDIRECTORY_NAME; done` from each subdirectory in `/data` to move a number of images to a test folder
+4. Ensure the training and test data are loaded correctly with image preloader in the network
 
 ---
 

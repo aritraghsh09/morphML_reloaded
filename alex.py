@@ -20,7 +20,6 @@ modelPath = 'path/to/save/check' #end with a name which is prefixed to any file 
 
 #X is array of images and Y is the corresponding array of labels
 X, Y = image_preloader(dataPath, image_shape=(120, 120),mode='folder', categorical_labels=True, normalize=True, files_extension='.jpg')
-
 print('Dataset Loaded')
 
 # building AlexNet
@@ -45,11 +44,11 @@ network = fully_connected(network, 3, activation='softmax')
 #training method and parameters 
 network = regression(network, optimizer='momentum',loss='categorical_crossentropy',learning_rate=0.001)
 
-
 # training
 model = tflearn.DNN(network, checkpoint_path=modelPath, tensorboard_verbose=0)
+model.fit(X, Y, n_epoch=1000, validation_set=0.1, shuffle=True, show_metric=True, batch_size=64, snapshot_step=None, snapshot_epoch=True, run_id='alex')
 
-model.fit(X, Y, n_epoch=1000, validation_set=0.1, shuffle=True, show_metric=True, batch_size=64, snapshot_step=None, snapshot_epoch=True, run_id='alexSDSS')
+
 
 
 
