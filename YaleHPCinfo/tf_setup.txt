@@ -45,9 +45,18 @@ ssh into grace and then go into a gpu
 srun -p gpu -c 10 --gres=gpu:1 --pty -t 1:00:00 bash     # one GPU for one hour
 source ml_init.sh          #This file contains a bunch of commands for activating the anaconda environment and loading cuda8.0 and cuDNN8.0-v6
 			   #This file is located in the YaleHPCInfo directory. Copy this into your home directory for it work.
+
+
 python
 >>> import tensorflow as tf
 >>> import tflearn as tfl
+>>> hello = tf.constant('Hello, TensorFlow!')
+>>> sess = tf.Session()
+>>> print(sess.run(hello))
+>>> a = tf.constant(10)
+>>> b = tf.constant(32)
+>>> print(sess.run(a + b))
 
-If these two commands work then you are all set!! 
+
+If these commands work, then you are all set!! 
  
