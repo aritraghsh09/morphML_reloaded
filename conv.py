@@ -16,7 +16,7 @@ from tflearn.data_utils import image_preloader
 
 dataPath = '/gpfs/loomis/project/fas/urry/zw297/dataWithoutTest'
 testPath = '/gpfs/loomis/project/fas/urry/zw297/dataTest'
-modelPath = '/gpfs/loomis/project/fas/urry/zw297/test_runs/conv/checkpoint'
+modelPath = '/gpfs/loomis/project/fas/urry/zw297/test_runs/conv/check'
 
 #X is array of images and Y is the corresponding array of labels 
 X, Y = image_preloader(dataPath, image_shape=(120, 120), mode='folder', categorical_labels=True, normalize=True, files_extension='.jpg')
@@ -24,7 +24,7 @@ testX, testY = image_preloader(testPath, image_shape=(120, 120), mode='folder', 
 print('Dataset Loaded')
 
 # Building convolutional network
-network = input_data(shape=[None, 120, 120, 1], name='input')
+network = input_data(shape=[None, 120, 120, 3], name='input')
 network = conv_2d(network, 32, 3, activation='relu', regularizer="L2")
 network = max_pool_2d(network, 2)
 network = local_response_normalization(network)
@@ -41,6 +41,7 @@ network = regression(network, optimizer='adam', learning_rate=0.001,
 
 # Training
 model = tflearn.DNN(network, tensorboard_verbose=0)
+
 model.fit({'input': X}, {'target': Y}, n_epoch=100,
            validation_set=({'input': testX}, {'target': testY}),
            snapshot_step=100, show_metric=True, run_id='conv1')
