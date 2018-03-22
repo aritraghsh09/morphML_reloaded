@@ -5,6 +5,9 @@ Recreating a galaxy morphology classifier using Yale HPRC resources
 
 ### Log
 
+3/22/18
+- Zurich discussion, created `galaxy_btdr_ml` repository as main project repository
+
 3/5/18
 - Grace maintenance complete
 
