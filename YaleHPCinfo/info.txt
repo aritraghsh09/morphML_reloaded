@@ -90,7 +90,7 @@ squeue --sort=-p -t PD -p <partition_name>   to see all jobs queued on partition
 
 The slurm commands can also be accessed (i.e. jobs can be submitted etc.) directly from the command line. For eg. to simply open an interactive session you do the following
 
-srun --pty --x11 -p gpu -c 10 -t 10:00:00 --gres=gpu:2 --gres-flags=enforce-binding bash      to open an interactive session on 2 gpus
+srun --pty --x11 -p gpu -c 10 -t 10:00:00 --gres=gpu:1 --gres-flags=enforce-binding bash      to open an interactive session on 1 gpus
 srun --pty --x11 -p interactive bash                                                          to open an interactive session on a CPU in the interactive partition
 
 Shorthands
