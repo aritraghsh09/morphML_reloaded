@@ -11,8 +11,6 @@ Grace has 2 log-in nodes and once you have submitted your public ssh-keys to YCR
 
 
 
-
-
 **STORAGE**
 
 After logging in you should see these 3 basic directories
@@ -20,11 +18,7 @@ scratch_60 --> FASTEST working directory. NOT backed up. Files deleted after 60 
 project --> LARGEST directoy meant to store research data. Files not backed up
 home --> Only backed up stograge (backed up daily). Ideal for storing scripts etc.  
 
-
-
-
-
-
+To access repos. of people in the same group, head to /gpfs/loomis/project/fas/urry/<net-id>
 
 
 **PREPARING JOBS**
