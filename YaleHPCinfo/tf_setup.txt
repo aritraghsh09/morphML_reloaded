@@ -23,17 +23,26 @@ rm Anaconda2-5.0.1-Linux-x86_64.sh
 
 
 **INSTALLING TENSORFLOW AND TFLEARN**
-Now we will create a conda environment called tensoflow and install tensorflow and tflearn within it.
-YaleHPC does not have cuda9.0 installed yet which is a requirement for TF1.5
-Thus, this guide will focus on getting TF1.4 installed WITH PYTHON 2.7.
+
+Now we will create a conda environment called tensoflow and install tensorflow, tflearn and keras within it.
+
+There are some compatibility issues to keep in mind. Every version of TF will not work with every version of CUDA,cuDNN,Python, TFL and Keras. So, I tested out a few combinations and here are my personal recommendations as of Aug. 20,2019. Google maintains a good copy of their advice at --> https://www.tensorflow.org/install/source#linux
+
+python--numpy--tensorflow-gpu---CUDA--cuDNN--tflearn--keras 
+2.7.14 -- 1.16.4 -- 1.12.0 -- CUDA/9.0.176 -- cuDNN/7.1.4 -- 0.3.2 -- 2.1.5 -- stored on grace anaconda2 env called tensorflow
+3.6.9  -- 1.17.0 -- 1.12.0 -- CUDA/9.0.176 -- cuDNN/7.1.4 --0.3.2 -- 2.2.4 -- stored on grace anaconda3 env called tf112
+3.6.9 -- 1.17.0 -- 1.13.1 -- CUDA/10.0.130 -- cuDNN/7.6.0 -- XXXXX -- 2.2.4 -- stored on grace anaconda3 env called tf113
+
+The last env tf113 may produce some degradation warnings from keras and tflearn if you choose to install tflearn 0.3.2
+The first two running TF1.12 should be running without any complaints from tflearn or keras 
+
 
 ##IF YOU ARE NOT USING PYTHON 2.7 CHANGE THE URLs APPROPRIATELY FOR THE PROPER PYTHON VERSION##
 
-
 export PATH=$HOME/anaconda2/bin:$PATH      #Add Anaconda to present path
-conda create -y -n tensorflow              #Create a conda environment called tensorflow
+conda create -n tensorflow              #Create a conda environment called tensorflow
 source activate tensorflow                 #Activate the environment we just created
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp27-none-linux_x86_64.whl   
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.4.0-cp27-none-linux_x86_64.whl #Replace this with the appropriate version you want to install  
 pip install --ignore-installed --upgrade $TF_BINARY_URL
 pip install tflearn
 source deactivate
